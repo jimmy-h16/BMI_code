@@ -1,0 +1,57 @@
+String rcvString = "";
+int height = 0;
+int weight = 0;
+int BMI = 0;
+
+void setup() {
+   Serial.begin(115200); //set up serial library baud rate to 115200
+   delay(2000);
+   Serial.println("What is your weight in kg?");
+}
+
+void loop() {
+   if(Serial.available()) { //if number of bytes (characters) available for reading
+      Serial.print("Your weight is "); //print I received
+      rcvString = Serial.readString();
+      weight = rcvString.toInt(); // read string until newline character
+      Serial.print(weight); 
+      Serial.println(" kg!");
+   }
+
+   if(Serial.available()) {
+      Serial.print("What is your height in m? "); //print I received
+      Serial.print("Your weight is ");
+      rcvString = Serial.readString();
+      height = rcvString.toInt(); // read string until newline character
+      Serial.print(height); 
+      Serial.println(" m!");
+   }
+
+    BMI = weight/(height*height);
+
+      if (BMI > 40) {
+        Serial.println("Morbidly Obese");
+      }
+      else if (BMI >=35) {
+        Serial.println("Severely Obese");
+      }
+      else if (BMI >=30) {
+        Serial.println("Moderately Obese");
+      }
+      else if (BMI >=25) {
+        Serial.println("Overweight");
+      }
+       else if (BMI >=18.5) {
+        Serial.println("Normal");
+      }
+       else if (BMI >=16) {
+        Serial.println("Underweight");
+      }
+       else if (BMI < 16) {
+        Serial.println("Severely Undeweight");
+      }
+  } 
+      
+
+                    
+                
